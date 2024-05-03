@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LanguagesComponent } from './languages.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -9,7 +10,7 @@ import { LanguagesComponent } from './languages.component';
     LanguagesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,RouterModule.forChild([{path:"",component:LanguagesComponent}])
   ]
 })
 export class LanguagesModule { }
