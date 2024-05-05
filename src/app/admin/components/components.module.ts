@@ -9,6 +9,7 @@ import { AuthorsModule } from './authors/authors.module';
 import { EmployeesModule } from './employees/employees.module';
 import { LanguagesModule } from './languages/languages.module';
 import { PersonsModule } from './persons/persons.module';
+import { ToastrModule } from 'ngx-toastr';
 
 
 

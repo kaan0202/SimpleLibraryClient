@@ -1,10 +1,21 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
+import { CustomSpinnerService } from 'src/app/services/common/custom-spinner.service';
+import { CustomToastrService } from 'src/app/services/common/custom-toastr.service';
 
 @Component({
   selector: 'app-persons',
   templateUrl: './persons.component.html',
   styleUrls: ['./persons.component.scss']
 })
-export class PersonsComponent {
+export class PersonsComponent implements AfterViewInit {
+
+  constructor(private toastr:CustomToastrService,private spinner:CustomSpinnerService) {
+
+
+  }
+  ngAfterViewInit(): void {
+    this.spinner.showSpinner();
+    this.toastr.showMessage("Üyeler");
+  }
 
 }
