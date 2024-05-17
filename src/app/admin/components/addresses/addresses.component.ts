@@ -14,7 +14,7 @@ export class AddressesComponent implements AfterViewInit{
 
   }
   ngAfterViewInit(): void {
-this.spinner.showSpinner(SpinnerType.Timer);
+   this.spinner.showSpinner(SpinnerType.Timer);
    this.toastr.showMessage("Adresler",null,{
     toastrType:ToastrType.Info
 

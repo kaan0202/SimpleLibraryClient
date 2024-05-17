@@ -1,0 +1,23 @@
+
+
+<div style="padding: 50px; border: solid 1px rgba(0, 0, 0, .12); border-right:none;" >
+  <mat-form-field class="authors-create">
+    <mat-label>Yazar İsmi</mat-label>
+    <input matInput type="text"  #txtName>
+  </mat-form-field>
+
+  <mat-form-field class="authors-create">
+    <mat-label>Yazar Soyadı</mat-label>
+    <input matInput type="text" #txtSurname>
+  </mat-form-field>
+
+
+<mat-form-field class="authors-create">
+  <mat-label>Doğum Tarihi</mat-label>
+  <input matInput type="datetime" min="1" value="0" #txtPrice>
+</mat-form-field>
+
+
+
+<button mat-flat-button style="width: 150px; height: 65px; font-size: 20px; " color="accent">Ekle</button>
+</div>

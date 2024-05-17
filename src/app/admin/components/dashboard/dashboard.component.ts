@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { CustomSpinnerService } from 'src/app/services/common/custom-spinner.service';
+import { CustomSpinnerService, SpinnerType } from 'src/app/services/common/custom-spinner.service';
 import { CustomToastrService } from 'src/app/services/common/custom-toastr.service';
 
 @Component({
@@ -17,8 +17,9 @@ export class DashboardComponent implements AfterViewInit {
 
   }
   ngAfterViewInit(): void {
-    this.spinner.showSpinner();
-    this.toastr.showMessage("Kontrol Paneli");
+    this.spinner.showSpinner(SpinnerType.Fire);
+    this.toastr.showMessage("Kontrol Paneli",null,{});
+
   }
 
 }

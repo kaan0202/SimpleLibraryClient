@@ -1,5 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { CustomSpinnerService } from 'src/app/services/common/custom-spinner.service';
+import { CustomSpinnerService, SpinnerType } from 'src/app/services/common/custom-spinner.service';
 import { CustomToastrService } from 'src/app/services/common/custom-toastr.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class EmployeesComponent implements AfterViewInit {
 
   }
   ngAfterViewInit(): void {
-   this.spinner.showSpinner();
+   this.spinner.showSpinner(SpinnerType.LineScale);
    this.toastr.showMessage("Çalışanlar");
   }
 

@@ -1,6 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { CustomSpinnerService } from 'src/app/services/common/custom-spinner.service';
-import { CustomToastrService } from 'src/app/services/common/custom-toastr.service';
+import { CustomSpinnerService, SpinnerType } from 'src/app/services/common/custom-spinner.service';
+import { CustomToastrService, ToastrPosition, ToastrType } from 'src/app/services/common/custom-toastr.service';
 
 @Component({
   selector: 'app-authors',
@@ -11,8 +11,11 @@ export class AuthorsComponent implements AfterViewInit {
 
   constructor(private spinner:CustomSpinnerService,private toastr:CustomToastrService){}
   ngAfterViewInit(): void {
-    this.spinner.showSpinner();
-    this.toastr.showMessage("Yazarlar")
+    this.spinner.showSpinner(SpinnerType.BallScale);
+    this.toastr.showMessage("Yazarlar","",{
+      position:ToastrPosition.TopRight,
+      toastrType:ToastrType.Success
+    })
   }
 
 }

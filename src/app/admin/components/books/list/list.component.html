@@ -1,0 +1,47 @@
+<div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="Id">
+    <th mat-header-cell *matHeaderCellDef> Id </th>
+    <td mat-cell class="mat-cell" *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="PageOfNumber">
+    <th mat-header-cell *matHeaderCellDef> Sayfa Sayısı </th>
+    <td mat-cell *matCellDef="let element"> {{element.PageOfNumber}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="AuthorName">
+    <th mat-header-cell *matHeaderCellDef> Yazar Adı </th>
+    <td mat-cell *matCellDef="let element"> {{element.AuthorName}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="AuthorSurname">
+    <th mat-header-cell *matHeaderCellDef> Yazar Soyadı </th>
+    <td mat-cell *matCellDef="let element"> {{element.AuthorSurname}} </td>
+  </ng-container>
+  <ng-container matColumnDef="AuthorBirthDay">
+    <th mat-header-cell *matHeaderCellDef> Doğum Tarihi </th>
+    <td mat-cell *matCellDef="let element"> {{element.AuthorBirthDay}} </td>
+  </ng-container>
+  <ng-container matColumnDef="CatalogName">
+    <th mat-header-cell *matHeaderCellDef> Katalog Adı </th>
+    <td mat-cell *matCellDef="let element"> {{element.CatalogName}} </td>
+  </ng-container>
+  <ng-container matColumnDef="LanguageName">
+    <th mat-header-cell *matHeaderCellDef> Dil </th>
+    <td mat-cell *matCellDef="let element"> {{element.LanguageName}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+</div>

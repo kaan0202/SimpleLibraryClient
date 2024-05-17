@@ -1,6 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { CustomSpinnerService } from 'src/app/services/common/custom-spinner.service';
-import { CustomToastrService } from 'src/app/services/common/custom-toastr.service';
+import { CustomSpinnerService, SpinnerType } from 'src/app/services/common/custom-spinner.service';
+import { CustomToastrService, ToastrPosition, ToastrType } from 'src/app/services/common/custom-toastr.service';
 
 @Component({
   selector: 'app-books',
@@ -15,8 +15,11 @@ export class BooksComponent implements AfterViewInit {
 
   }
   ngAfterViewInit(): void {
-   this.spinner.showSpinner();
-   this.toastr.showMessage("Kitaplar")
+   this.spinner.showSpinner(SpinnerType.LineScale);
+   this.toastr.showMessage("Kitaplar",null,{
+    position:ToastrPosition.TopRight,
+    toastrType:ToastrType.Info
+   })
   }
 
 }
