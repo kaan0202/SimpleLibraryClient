@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { ListBook } from 'src/app/contracts/list-book';
 import { CustomToastrService, ToastrPosition, ToastrType } from 'src/app/services/common/custom-toastr.service';
-import { BookService } from 'src/app/services/common/models/book.service';
+import { BookService } from 'src/app/services/models/book.service';
 
 
 
@@ -36,13 +37,10 @@ constructor(private book:BookService,private toastr:CustomToastrService){this.ge
 
 
   displayedColumns: string[] = ['Id', 'PageOfNumber', 'AuthorName', 'AuthorBirthDay','AuthorSurname','CatalogName','LanguageName'];
-  dataSource= ELEMENT_DATA;
+  dataSource: MatTableDataSource<any>;
+  books:any;
   getallBooks():any{
-     this.book.read(()=>{
-this.toastr.showMessage("Başarılı","",{
-  position:ToastrPosition.TopRight,
-  toastrType:ToastrType.Success
-})
-     });
+    this.book.read().then(response =>this.books = response.data)
+     this.dataSource = new MatTableDataSource<any>(this.books)
   }
 }

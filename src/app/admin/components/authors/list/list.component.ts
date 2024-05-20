@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { AuthorsService } from 'src/app/services/models/authors.service';
 
 export interface PeriodicElement {
   name: string;
@@ -26,7 +28,15 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class ListComponent {
   displayedColumns: string[] = ['Id', 'Name', 'Surname', 'BirthDay'];
-  dataSource=ELEMENT_DATA;
+  dataSource:MatTableDataSource<any>;
+authors:any;
+
+  constructor(private author:AuthorsService){this.getAddresses()}
+
+  async getAddresses(){
+    await this.author.read().then(response =>  this.authors = response.data )
+    this.dataSource = new MatTableDataSource<any>(this.authors);
+  }
 
   }
 
