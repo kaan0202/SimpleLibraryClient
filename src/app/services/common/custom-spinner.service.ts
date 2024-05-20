@@ -9,7 +9,7 @@ export class CustomSpinnerService {
   constructor(private spinner:NgxSpinnerService) {spinner.show() }
 
 
-  showSpinner(spinnerType?:SpinnerType){
+  showSpinner(spinnerType:SpinnerType){
     let ngxSpinner = spinnerType ? spinnerType : SpinnerType.BallScale
     this.spinner.show(ngxSpinner);
     setTimeout(()=>{

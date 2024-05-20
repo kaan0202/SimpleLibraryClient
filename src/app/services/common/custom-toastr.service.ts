@@ -14,8 +14,8 @@ export class CustomToastrService {
 
 
     let titleMessage:string = title ? title : "Uyarı";
-    let messageType = toastrOptions.toastrType ? toastrOptions.toastrType : ToastrType.Warning;
-    let position = toastrOptions.position ? toastrOptions.position : ToastrPosition.TopRight;
+    let messageType = toastrOptions?.toastrType ? toastrOptions?.toastrType : ToastrType.Warning;
+    let position = toastrOptions?.position ? toastrOptions?.position : ToastrPosition.TopRight;
     this.toastr[messageType](message,titleMessage,{positionClass:position});
   }
 
