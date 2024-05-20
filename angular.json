@@ -30,9 +30,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/ngx-spinner/animations/timer.css",
+              "node_modules/ngx-spinner/animations/fire.css",
+              "node_modules/ngx-spinner/animations/ball-scale.css",
+              "node_modules/ngx-spinner/animations/pacman.css",
+              "node_modules/ngx-spinner/animations/line-scale.css"
+
             ],
-            "scripts": []
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.min.js","node_modules/bootstrap/dist/js/bootstrap.js"]
           },
           "configurations": {
             "production": {
@@ -93,6 +102,7 @@
               "src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -100,5 +110,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "27a3f908-6b7e-42f3-b931-3e3a53d4c14f"
   }
 }

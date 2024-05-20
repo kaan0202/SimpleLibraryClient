@@ -1,0 +1,7 @@
+.photo{
+        border: 2px solid black;
+        border-radius: 50%; /* Yuvarlak köşe yarıçapı, %50 kullanarak bir daire elde ediyoruz */
+        display: flex; /* İçeriği dikey ve yatayda merkezlemek için */
+        justify-content: center; /* Yatayda merkezleme */
+        align-items: center; /* Dikeyde merkezleme */
+}

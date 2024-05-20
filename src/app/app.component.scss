@@ -1,0 +1,35 @@
+*{
+  height: 100%;
+}
+footer {
+  background-color: #343a40;
+  color: #ffffff;
+  padding: 25px 0;
+}
+
+footer a {
+  color: #ffffff;
+}
+
+footer a:hover {
+  color: #f8f9fa;
+}
+
+.social-icons {
+  list-style: none;
+  padding: 0;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.social-icons li:last-child {
+  margin-right: 0;
+}
+
+.social-icons li a {
+  color: #ffffff;
+  font-size: 20px;
+}

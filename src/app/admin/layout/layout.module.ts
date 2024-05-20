@@ -8,12 +8,13 @@ import { RouterModule } from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import { RightSidebarComponent } from './components/right-sidebar/right-sidebar.component';
 
 
 
 @NgModule({
   declarations: [
-    LayoutComponent,HeaderComponent,FooterComponent,SidebarComponent
+    LayoutComponent,HeaderComponent,FooterComponent,SidebarComponent, RightSidebarComponent
   ],
   imports: [
     CommonModule,RouterModule,MatButtonModule,MatSidenavModule,MatListModule
