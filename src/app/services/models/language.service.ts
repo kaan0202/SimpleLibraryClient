@@ -1,8 +1,10 @@
+import { ListLanguage } from './../../contracts/List/list-language';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpClientService } from '../common/http-client.service';
-import { ListLanguage } from 'src/app/contracts/list-language';
-import { Observable, firstValueFrom } from 'rxjs';
+
+import { Observable, first, firstValueFrom } from 'rxjs';
+import { CreateLanguage } from 'src/app/contracts/Create/create-language';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +13,17 @@ export class LanguageService {
 
   constructor(private httpClient:HttpClientService) { }
 
-  async read(successCallBack?:()=>void,errorCallBack?:(errorMessage:string)=>void):Promise<{data:ListLanguage[], message:string,success:boolean}>{
-    const observableData: Observable<any> = this.httpClient.get<{data:ListLanguage[],message: string,success:boolean}>({controller:"language"});
+  async read(page: number = 0, size:number = 5,successCallBack?:()=>void,errorCallBack?:any):Promise<{data:ListLanguage[],totalCount:number, message:string,success:boolean,}>{
+    const observableData:Observable<any>= this.httpClient.get<{data:ListLanguage[],totalCount:number,message: string,success:boolean}>({controller:"language",queryString:`page=${page}&size=${size} `});
+
+     const promiseData:Promise<{data:ListLanguage[],totalCount:number,message: string,success:boolean}> = await firstValueFrom(observableData);
+    return await promiseData;
+   }
 
 
-        const promiseData:Promise<{data:ListLanguage[],message:string,success:boolean}> = await firstValueFrom(observableData);
 
-        return promiseData;
+    create(language:CreateLanguage,successCallBack?:any){
+      this.httpClient.post({controller:"language"},language).subscribe(successCallBack);
     }
    }
 
