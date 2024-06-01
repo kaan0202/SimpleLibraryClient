@@ -10,6 +10,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 @NgModule({
@@ -20,7 +23,7 @@ import {MatSelectModule} from '@angular/material/select';
 
   ],
   imports: [
-    CommonModule,RouterModule.forChild([{path:"",component:BooksComponent}]),MatTableModule,MatFormFieldModule,MatButtonModule,MatSidenavModule,MatInputModule,MatSelectModule
+    CommonModule,RouterModule.forChild([{path:"",component:BooksComponent}]),MatTableModule,MatFormFieldModule,MatButtonModule,MatSidenavModule,MatInputModule,MatSelectModule,MatMenuModule,MatIconModule,MatPaginatorModule
   ]
 })
 export class BooksModule { }

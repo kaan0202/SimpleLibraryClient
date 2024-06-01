@@ -11,6 +11,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -20,7 +23,7 @@ import { MatFormFieldControl, MatFormFieldModule } from '@angular/material/form-
     ListComponent
   ],
   imports: [
-    CommonModule,RouterModule.forChild([{path:"",component:AuthorsComponent}]),MatTableModule,MatButtonModule,MatSidenavModule,MatInputModule,MatSelectModule,
+    CommonModule,RouterModule.forChild([{path:"",component:AuthorsComponent}]),MatTableModule,MatButtonModule,MatSidenavModule,MatInputModule,MatSelectModule,MatIconModule,MatPaginatorModule,MatMenuModule
   ]
 })
 export class AuthorsModule { }

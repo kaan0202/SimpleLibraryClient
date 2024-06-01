@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ListBook } from 'src/app/contracts/list-book';
+import { ListBook } from 'src/app/contracts/List/list-book';
 import { CustomToastrService, ToastrPosition, ToastrType } from 'src/app/services/common/custom-toastr.service';
 import { BookService } from 'src/app/services/models/book.service';
 
@@ -35,12 +37,18 @@ export class ListComponent  {
 constructor(private book:BookService,private toastr:CustomToastrService){this.getallBooks();}
 
 
-
-  displayedColumns: string[] = ['Id', 'PageOfNumber', 'AuthorName', 'AuthorBirthDay','AuthorSurname','CatalogName','LanguageName'];
+@ViewChild(MatPaginator) paginator:MatPaginator
+  displayedColumns: string[] = ['Id', 'PageOfNumber', 'AuthorName', 'AuthorBirthDay','AuthorSurname','CatalogName','LanguageName',"menus"];
   dataSource: MatTableDataSource<any>;
   books:any;
-  getallBooks():any{
-    this.book.read().then(response =>this.books = response.data)
-     this.dataSource = new MatTableDataSource<any>(this.books)
+ async getallBooks(){
+   const allBooks:{ data:ListBook[],message:string,success:boolean,totalCount:number}=  await this.book.read()
+     this.dataSource = new MatTableDataSource<any>(allBooks.data)
+     this.paginator.length = allBooks.totalCount;
+
+  }
+
+ async pageChanged(){
+    await this.getallBooks();
   }
 }

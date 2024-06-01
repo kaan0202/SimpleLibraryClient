@@ -10,16 +10,24 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
-
-
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import { DeleteDirective } from '../../directives/delete.directive';
+import { DialogModule } from '../../dialogs/delete-dialog/dialog.module';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { UpdateLanguageDialogModule } from '../../dialogs/language/update-language-dialog/update-language-dialog.module';
+import { UpdateDirective } from '../../directives/update.directive';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [
     LanguagesComponent,
     CreateComponent,
-    ListComponent
+    ListComponent,
+    DeleteDirective,
+
   ],
   imports: [
-    CommonModule,RouterModule.forChild([{path:"",component:LanguagesComponent}]),MatButtonModule,MatTableModule,MatFormFieldModule,MatSidenavModule,MatInputModule,MatSelectModule
+    CommonModule,RouterModule.forChild([{path:"",component:LanguagesComponent}]),MatButtonModule,MatTableModule,MatFormFieldModule,MatSidenavModule,MatInputModule,MatSelectModule,MatIconModule,MatMenuModule,DialogModule,MatPaginatorModule
   ]
 })
 export class LanguagesModule { }

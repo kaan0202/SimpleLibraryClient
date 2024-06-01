@@ -10,6 +10,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -20,7 +23,7 @@ import {MatSelectModule} from '@angular/material/select';
     ListComponent
   ],
   imports: [
-    CommonModule,RouterModule.forChild([{path:"",component:EmployeesComponent}]),MatButtonModule,MatTableModule,MatFormFieldModule,MatSidenavModule,MatInputModule,MatSelectModule
+    CommonModule,RouterModule.forChild([{path:"",component:EmployeesComponent}]),MatButtonModule,MatTableModule,MatFormFieldModule,MatSidenavModule,MatInputModule,MatSelectModule,MatIconModule,MatPaginatorModule,MatMenuModule
   ]
 })
 export class EmployeesModule { }

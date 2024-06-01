@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { ListNeighboorHood } from './../../../../contracts/List/list-neighboor-hood';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { NeighboorHoodService } from 'src/app/services/models/neighboor-hood.service';
 
@@ -8,13 +10,18 @@ import { NeighboorHoodService } from 'src/app/services/models/neighboor-hood.ser
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  displayedColumns: string[] = ['Id', 'PageOfNumber', 'AuthorName', 'AuthorBirthDay','AuthorSurname','CatalogName','LanguageName'];
+  displayedColumns: string[] = ['Id', 'PageOfNumber', 'AuthorName', 'AuthorBirthDay','AuthorSurname','CatalogName','LanguageName',"menus"];
   dataSource : MatTableDataSource<any>;
   neighs:any;
+  @ViewChild(MatPaginator) paginator:MatPaginator
   constructor(private neigh : NeighboorHoodService){}
-getCatalogs(){
-  this.neigh.read().then(response => this.neighs = response.data);
-  this.dataSource = new MatTableDataSource<any>(this.neighs)
+ async getNeighboors(){
+ const allNeigh:{data:ListNeighboorHood[],message:string,success:boolean,totalCount:number} =  await this.neigh.read();
+  this.dataSource = new MatTableDataSource<any>(allNeigh.data)
+  this.paginator.length = allNeigh.totalCount
 }
 
+async pageChanged(){
+ await this.getNeighboors;
+}
 }

@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { ListCatalogs } from './../../../../contracts/List/list-catalogs';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { EmployeeService } from 'src/app/services/models/employee.service';
+import { CatalogsService } from 'src/app/services/models/catalogs.service';
+
 
 @Component({
   selector: 'app-list',
@@ -8,13 +11,19 @@ import { EmployeeService } from 'src/app/services/models/employee.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  displayedColumns: string[] = ['Id', 'Name', 'Surname','Salary','Status','Gender'];
+  displayedColumns: string[] = ['Id', 'Name', 'Surname','Salary','Status','Gender',"menus"];
   dataSource : MatTableDataSource<any>;
   employees:any;
-  constructor(private employee : EmployeeService){}
-getCatalogs(){
-  this.employee.read().then(response => this.employees = response.data);
-  this.dataSource = new MatTableDataSource<any>(this.employees)
+  constructor(private catalog : CatalogsService){}
+  @ViewChild(MatPaginator) paginator:MatPaginator
+ async getCatalogs(){
+ const allCatalogs:{data:ListCatalogs[],message:string,success:boolean,totalCount:number} =  await this.catalog.read();
+  this.dataSource = new MatTableDataSource<any>(allCatalogs.data)
+  this.paginator.length = allCatalogs.totalCount;
+
+}
+ async pageChanged(){
+await this.getCatalogs;
 }
 
 }

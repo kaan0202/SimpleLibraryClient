@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { ListAuthors } from 'src/app/contracts/List/list-authors';
 import { AuthorsService } from 'src/app/services/models/authors.service';
 
 export interface PeriodicElement {
@@ -30,13 +32,17 @@ export class ListComponent {
   displayedColumns: string[] = ['Id', 'Name', 'Surname', 'BirthDay'];
   dataSource:MatTableDataSource<any>;
 authors:any;
+@ViewChild(MatPaginator) paginator: MatPaginator;
+  constructor(private author:AuthorsService){this.getAuthors()}
 
-  constructor(private author:AuthorsService){this.getAddresses()}
-
-  async getAddresses(){
-    await this.author.read().then(response =>  this.authors = response.data )
-    this.dataSource = new MatTableDataSource<any>(this.authors);
+  async getAuthors(){
+   const allAuthors:{data:ListAuthors[],message:string,success:boolean,totalCount:number} = await this.author.read()
+    this.dataSource = new MatTableDataSource<any>(allAuthors.data);
+    this.paginator.length = allAuthors.totalCount
   }
 
+   async pageChanged(){
+    this.getAuthors;
+  }
   }
 

@@ -1,7 +1,8 @@
 import { MatTableDataSource } from '@angular/material/table';
 import { LanguageService } from './../../../../services/models/language.service';
-import { Component } from '@angular/core';
-import { ListLanguage } from 'src/app/contracts/list-language';
+import { Component, ViewChild } from '@angular/core';
+import { ListLanguage } from 'src/app/contracts/List/list-language';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-list',
@@ -9,20 +10,24 @@ import { ListLanguage } from 'src/app/contracts/list-language';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  displayedColumns: string[] = ['Id', 'Name'];
+  displayedColumns: string[] = ['Id', 'Name',"menus"];
   dataSource:MatTableDataSource<any>;
    languages:any;
+   totalCount:number;
   constructor(private language:LanguageService){
    this.getLanguages()
   }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
  async getLanguages(){
 
-     await  this.language.read().then((response => {
-      this.languages = response.data
-    })).finally(() => {
-      console.log(this.languages)
-    });
+  const allLanguages:{data:ListLanguage[],totalCount:number,message: string,success:boolean}  = await this.language.read(this.paginator?this.paginator.pageIndex:0,this.paginator?this.paginator.pageSize:5)
+  this.dataSource = new MatTableDataSource<ListLanguage>(allLanguages.data);
 
-    this.dataSource = new MatTableDataSource<any>(this.languages)
-  }
+  this.paginator.length = allLanguages.totalCount;
 }
+async pageChanged() {
+  await this.getLanguages();
+}
+  }
+
+

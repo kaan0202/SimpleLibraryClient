@@ -40,8 +40,32 @@
       <td mat-cell *matCellDef="let element"> {{element.LanguageName}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="menus" stickyEnd>
+      <th mat-header-cell *matHeaderCellDef> Menü</th>
+      <td mat-cell *matCellDef="let element">
+      <button mat-icon-button    [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [id]="element.id" controller ="address" (callback)="getNeighboors()" appUpdate>
+          <mat-icon>settings_backup_restore</mat-icon>
+          <span>Güncelle</span>
+        </button>
+
+        <button mat-menu-item [id]="element.id" controller ="address" (callback)="getNeighboors()" appDelete>
+          <mat-icon>delete</mat-icon>
+          <span>Sil</span>
+        </button>
+      </mat-menu>
+    </td>
+</ng-container>
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
+  <mat-paginator (page)="pageChanged()"
+  [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
   </div>

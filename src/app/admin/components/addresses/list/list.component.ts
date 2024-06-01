@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { ListAddresses } from './../../../../contracts/List/list-addresses';
+import { Component, ViewChild } from '@angular/core';
+import { MatMenuTrigger } from '@angular/material/menu';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AddressService } from 'src/app/services/models/address.service';
 @Component({
@@ -7,17 +10,21 @@ import { AddressService } from 'src/app/services/models/address.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  displayedColumns: string[] = ['Id', 'AddressTitle', 'Description', 'OpenAddress','PhoneNumber','PersonName','NeighboorHood'];
+  displayedColumns: string[] = ['Id', 'AddressTitle', 'Description', 'OpenAddress','PhoneNumber','PersonName','NeighboorHood',"menus"];
   dataSource : MatTableDataSource<any>;
   addresses:any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(private address:AddressService){this.getAddress()}
 
   async getAddress(){
-    await this.address.read().then(response =>this.addresses = response.data)
+   const allAddress:{data:ListAddresses[],totalCount:number,message: string,success:boolean} = await this.address.read();
 
- this.dataSource = new MatTableDataSource<any>(this.addresses);
-  }
+ this.dataSource = new MatTableDataSource<any>(allAddress.data);
+this.paginator.length =allAddress.totalCount
+}
 
-
+async pageChanged(){
+  await this.getAddress;
+}
 
 }
