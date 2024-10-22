@@ -22,12 +22,12 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item [id]="element.id" controller ="language" (callback)="getLanguages()" appUpdate>
+        <button mat-menu-item [id]="element.id"  (callback)="getLanguages()">
           <mat-icon>settings_backup_restore</mat-icon>
           <span>Güncelle</span>
         </button>
 
-        <button mat-menu-item [id]="element.id" controller ="language" (callback)="getLanguages()" appDelete>
+        <button mat-menu-item [id]="element.id" controller ="language"   (callback)="getLanguages()" appDelete>
           <mat-icon>delete</mat-icon>
           <span>Sil</span>
         </button>
@@ -44,3 +44,7 @@
                  aria-label="Select page of periodic elements">
   </mat-paginator>
   </div>
+
+
+
+

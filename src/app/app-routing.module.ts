@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './admin/layout/layout.component';
 import { DashboardComponent } from './admin/components/dashboard/dashboard.component';
+import { LoginComponent } from './ui/login/login.component';
 
 const routes: Routes = [
   {path:"admin",component:LayoutComponent,children:[
@@ -16,7 +17,8 @@ const routes: Routes = [
     {path:"persons",loadChildren: ()=>import("./admin/components/persons/persons.module").then(m =>m.PersonsModule)},
 
     {path:"languages",loadChildren: ()=>import("./admin/components/languages/languages.module").then(m =>m.LanguagesModule)},
-  ]}
+  ]},
+  {path:"login",component:LoginComponent}
 
 ];
 

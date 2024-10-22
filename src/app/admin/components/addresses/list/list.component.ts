@@ -17,7 +17,7 @@ export class ListComponent {
   constructor(private address:AddressService){this.getAddress()}
 
   async getAddress(){
-   const allAddress:{data:ListAddresses[],totalCount:number,message: string,success:boolean} = await this.address.read();
+   const allAddress:{data:ListAddresses[],totalCount:number,message: string,success:boolean} = await this.address.read(this.paginator?this.paginator.pageIndex:0,this.paginator?this.paginator.pageSize:5);
 
  this.dataSource = new MatTableDataSource<any>(allAddress.data);
 this.paginator.length =allAddress.totalCount

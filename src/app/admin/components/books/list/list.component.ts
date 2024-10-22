@@ -37,18 +37,22 @@ export class ListComponent  {
 constructor(private book:BookService,private toastr:CustomToastrService){this.getallBooks();}
 
 
-@ViewChild(MatPaginator) paginator:MatPaginator
+
   displayedColumns: string[] = ['Id', 'PageOfNumber', 'AuthorName', 'AuthorBirthDay','AuthorSurname','CatalogName','LanguageName',"menus"];
   dataSource: MatTableDataSource<any>;
   books:any;
+@ViewChild(MatPaginator) paginator: MatPaginator;
  async getallBooks(){
-   const allBooks:{ data:ListBook[],message:string,success:boolean,totalCount:number}=  await this.book.read()
-     this.dataSource = new MatTableDataSource<any>(allBooks.data)
-     this.paginator.length = allBooks.totalCount;
+  const allBook:{data:ListBook[],totalCount:number,message: string,success:boolean} = await this.book.read(this.paginator?this.paginator.pageIndex:0,this.paginator?this.paginator.pageSize:5);
 
-  }
+ this.dataSource = new MatTableDataSource<any>(allBook.data);
+this.paginator.length =allBook.totalCount
+}
+
 
  async pageChanged(){
     await this.getallBooks();
   }
 }
+
+

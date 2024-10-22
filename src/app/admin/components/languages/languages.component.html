@@ -1,4 +1,5 @@
 <div class="example-container">
-  <div  style="height: 100%;"  opened><app-create></app-create></div>
-  <app-list></app-list>
+  <div  style="height: 100%;"  opened><app-create (createdLanguage)="createdLanguage($event)"></app-create></div>
+   <app-list></app-list>
+
 </div>

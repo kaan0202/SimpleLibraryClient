@@ -26,7 +26,7 @@ export class DeleteDirective {
       const td=this.element.nativeElement;
      await  this.httpService.delete({controller:this.controller},this.id).subscribe(data=>{
       $(td.parentElement).animate({ opacity:0,left:"+=50",height:"toggle"},700,()=>{
-
+        this.callback.emit();
 
       });
 

@@ -16,7 +16,7 @@ export class ListComponent {
   @ViewChild(MatPaginator) paginator:MatPaginator
   constructor(private neigh : NeighboorHoodService){}
  async getNeighboors(){
- const allNeigh:{data:ListNeighboorHood[],message:string,success:boolean,totalCount:number} =  await this.neigh.read();
+ const allNeigh:{data:ListNeighboorHood[],message:string,success:boolean,totalCount:number} =  await this.neigh.read(this.paginator?this.paginator.pageIndex:0,this.paginator?this.paginator.pageSize:5);
   this.dataSource = new MatTableDataSource<any>(allNeigh.data)
   this.paginator.length = allNeigh.totalCount
 }

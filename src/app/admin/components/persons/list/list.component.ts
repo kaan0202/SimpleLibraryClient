@@ -16,7 +16,7 @@ export class ListComponent {
   @ViewChild(MatPaginator) paginator:MatPaginator
   constructor(private person : PersonService){}
 async getPersons(){
- const allPersons:{data:ListPerson[],message:string,success:boolean,totalCount:number} =  await this.person.read();
+ const allPersons:{data:ListPerson[],message:string,success:boolean,totalCount:number} =  await this.person.read(this.paginator?this.paginator.pageIndex:0,this.paginator?this.paginator.pageSize:5);
   this.dataSource = new MatTableDataSource<any>(allPersons.data)
   this.paginator.length = allPersons.totalCount
 

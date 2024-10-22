@@ -1,41 +1,51 @@
 
 
 <div style="padding: 50px; border: solid 1px rgba(0, 0, 0, .12); border-right:none;" >
+
+
+
+
   <mat-form-field class="address-create">
-  <mat-label>Katalog</mat-label>
-  <mat-select>
-    <mat-option value="one">First option</mat-option>
+    <mat-label>Kullanıcı</mat-label>
+    <mat-select [(value)]="personName" >
+      <mat-option *ngFor="let data of personData" [value]="data.id">
+        {{data.name}}
+      </mat-option>
+      </mat-select>
+  </mat-form-field>
 
-  </mat-select>
+
+<mat-form-field class="address-create">
+  <mat-label>Address Başlığı</mat-label>
+  <input matInput #txtTitle>
 </mat-form-field>
 
 <mat-form-field class="address-create">
-  <mat-label>Katalog</mat-label>
-  <mat-select>
-    <mat-option value="one">First option</mat-option>
+  <mat-label>Açıklama </mat-label>
+  <input matInput #txtDescription>
+</mat-form-field>
+<mat-form-field class="address-create">
+  <mat-label>Açık Adres</mat-label>
+  <textarea matInput #txtOpenAddress></textarea>
+</mat-form-field>
 
-  </mat-select>
+
+<mat-form-field class="address-create">
+  <mat-label>Mahalle</mat-label>
+  <mat-select [(value)]="neightName" >
+    <mat-option *ngFor="let data of neight" [value]="data.id">
+      {{data.name}}
+    </mat-option>
+    </mat-select>
 </mat-form-field>
 
 <mat-form-field class="address-create">
-  <mat-label>Kitap Adı</mat-label>
-  <input matInput #txtName>
-</mat-form-field>
-
-<mat-form-field class="address-create">
-  <mat-label>Yazar</mat-label>
-  <mat-select>
-    <mat-option value="one">First option</mat-option>
-
-  </mat-select>
-</mat-form-field>
-
-<mat-form-field class="address-create">
-  <mat-label>Sayfa Sayısı</mat-label>
-  <input matInput type="number" min="0" value="0" #txtPageNumber>
+  <mat-label>Telefon</mat-label>
+  <span matTextPrefix>+90 &nbsp;</span>
+  <input type="tel" matInput #txtPhoneNumber>
+  <mat-icon matSuffix>mode_edit</mat-icon>
 </mat-form-field>
 
 
-
-<button mat-flat-button style="width: 150px; height: 65px; font-size: 20px; " color="accent">Ekle</button>
+<button mat-flat-button style="width: 150px; height: 65px; font-size: 20px;" (click)="create(personName,neightName,txtTitle,txtDescription,txtOpenAddress,txtPhoneNumber)" color="accent">Ekle</button>
 </div>

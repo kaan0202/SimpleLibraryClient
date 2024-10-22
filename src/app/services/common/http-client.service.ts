@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,50 +13,51 @@ export class HttpClientService {
     return `${requestParameter.baseUrl ? requestParameter.baseUrl : this.baseUrl}/${requestParameter.controller}${requestParameter.action ? `/${requestParameter.action}` : ""}`
    }
 
-   get<T>(requestParamaters:RequestParameters,id?:number){
-    let url:string = "";
-    if(requestParamaters.fullEndPoint)
-      url = requestParamaters.fullEndPoint
-      else
-      url = `${this.url(requestParamaters)}${id ? `/${id}` : ""}`
-    return this.httpClient.get(url,{headers:requestParamaters.headers});
+   get<T>(requestParameter: RequestParameters, id?: string): Observable<T> {
+    let url: string = "";
+    if (requestParameter.fullEndPoint) {
+      url = requestParameter.fullEndPoint;
+    } else {
+      url = `${this.url(requestParameter)}${id ? `/${id}` : ''}${requestParameter.queryString?`?${requestParameter.queryString}`: ""}`;
+    }
+    return this.httpClient.get<T>(url, { headers: requestParameter.headers });
+  }
+
+  post<T>(requestParameter: RequestParameters, body: T): Observable<T> {
+    let url: string = "";
+    if (requestParameter.fullEndPoint) {
+      url = requestParameter.fullEndPoint;
+    } else {
+      url = `${this.url(requestParameter)}${requestParameter.queryString?`?${requestParameter.queryString}`: ""}`;
+    }
+    return this.httpClient.post<T>(url, body, { headers: requestParameter.headers });
+  }
+
+  put<T>(requestParameter: RequestParameters, body: T): Observable<T> {
+    let url: string = "";
+    if (requestParameter.fullEndPoint) {
+      url = requestParameter.fullEndPoint;
+    } else {
+      url = `${this.url(requestParameter)}`;
+    }
+    return this.httpClient.put<T>(url, body, { headers: requestParameter.headers });
+  }
+
+  delete<T>(requestParameter: RequestParameters, id?: number): Observable<T> {
+    let url: string = "";
+    if (requestParameter.fullEndPoint) {
+      url = requestParameter.fullEndPoint;
+    } else {
+      url = `${this.url(requestParameter)}${id ? `/${id}` : ''}${requestParameter.queryString?`?${requestParameter.queryString}`: ""}`;
+    }
+    return this.httpClient.delete<T>(url);
+  }
 }
-   post<T>(requestParamaters:RequestParameters,body:T){
-    let url:string ="";
-    if(requestParamaters.fullEndPoint)
-      url = requestParamaters.fullEndPoint
-    else
-    url=this.url(requestParamaters)
-
-    return this.httpClient.post<T>(url,body,{headers:requestParamaters.headers})
-   }
-
-   put<T>(requestParameters:RequestParameters,body:T){
-    let url:string = "";
-    if(requestParameters.fullEndPoint)
-      url = requestParameters.fullEndPoint
-    else
-    url = this.url(requestParameters)
-
-    return this.httpClient.put<T>(url,body,{headers:requestParameters.headers})
-   }
-
-   delete<T>(requestParameters:RequestParameters,id?:number){
-    let url:string = "";
-    if(requestParameters.fullEndPoint)
-      url = requestParameters.fullEndPoint
-
-    else
-     url= `${this.url(requestParameters)}${id ? `/${id}` : ""}`
-
-     return this.httpClient.delete(url,{headers:requestParameters.headers})
-   }
 
 
 
 
 
-}
 
 
 
@@ -65,4 +67,5 @@ export class RequestParameters {
   headers?: HttpHeaders;
   baseUrl?: string;
   fullEndPoint?: string;
+  queryString?:string;
 }

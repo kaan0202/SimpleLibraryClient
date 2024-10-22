@@ -1,6 +1,8 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { CustomSpinnerService, SpinnerType } from 'src/app/services/common/custom-spinner.service';
 import { CustomToastrService } from 'src/app/services/common/custom-toastr.service';
+import { ListComponent } from './list/list.component';
+import { CreateCatalog } from 'src/app/contracts/Create/create-catalog';
 
 @Component({
   selector: 'app-catalogs',
@@ -20,4 +22,9 @@ export class CatalogsComponent implements AfterViewInit {
     this.toastr.showMessage("Kataloglar")
   }
 
+
+  @ViewChild(ListComponent) list : ListComponent
+  createdCatalogs(catalog:CreateCatalog){
+    this.list.getCatalogs();
+  }
 }

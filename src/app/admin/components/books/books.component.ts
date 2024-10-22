@@ -1,6 +1,9 @@
-import { AfterViewInit, Component } from '@angular/core';
+
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { CustomSpinnerService, SpinnerType } from 'src/app/services/common/custom-spinner.service';
 import { CustomToastrService, ToastrPosition, ToastrType } from 'src/app/services/common/custom-toastr.service';
+import { ListComponent } from './list/list.component';
+import { CreateBook } from 'src/app/contracts/Create/create-book';
 
 @Component({
   selector: 'app-books',
@@ -20,6 +23,10 @@ export class BooksComponent implements AfterViewInit {
     position:ToastrPosition.TopRight,
     toastrType:ToastrType.Info
    })
+  }
+  @ViewChild(ListComponent) listComponent:ListComponent
+  createdBooks(book:CreateBook){
+    this.listComponent.getallBooks();
   }
 
 }

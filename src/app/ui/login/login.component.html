@@ -1,0 +1,17 @@
+<div style=" width: 400px; height: 500px; margin-left: 565px; margin-top: 50px;">
+<form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+
+  <h1 class="h3 mb-3 fw-normal" style="display: flex; margin-left:145px ;">Giriş Yap</h1>
+
+  <div class="form-floating">
+    <input name="username" [(ngModel)]="model.username" class="form-control" placeholder="Kullanıcı adı veya email">
+    <label for="floatingInput">Kullanıcı adı veya email</label>
+  </div>
+  <div class="form-floating"style=" margin-top:15px;margin-bottom: 24px;">
+    <input [(ngModel)]="model.username" class="form-control" placeholder="Şifre">
+    <label for="floatingPassword">Şifre</label>
+  </div>
+
+  <button class="btn btn-primary w-100 py-2" style="height: 50px;" type="submit">Giriş Yap</button>
+</form>
+</div>

@@ -8,6 +8,8 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { DialogModule } from './admin/dialogs/delete-dialog/dialog.module';
+import { UiModule } from './ui/ui.module';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    UiModule
+
 
   ],
   providers: [{provide:"baseUrl",useValue:"https://localhost:7270/api" , multi:true}],

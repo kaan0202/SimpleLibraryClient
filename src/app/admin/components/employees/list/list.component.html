@@ -45,12 +45,12 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item [id]="element.id" controller ="address" (callback)="getCatalogs()" appUpdate>
+        <button mat-menu-item [id]="element.id" controller ="address" (callback)="getEmployee()" appUpdate>
           <mat-icon>settings_backup_restore</mat-icon>
           <span>Güncelle</span>
         </button>
 
-        <button mat-menu-item [id]="element.id" controller ="address" (callback)="getCatalogs()" appDelete>
+        <button mat-menu-item [id]="element.id" controller ="address" (callback)="getEmployee()" appDelete>
           <mat-icon>delete</mat-icon>
           <span>Sil</span>
         </button>

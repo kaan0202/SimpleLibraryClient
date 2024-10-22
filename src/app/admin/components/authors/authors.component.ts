@@ -1,6 +1,8 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { CreateAuthor } from 'src/app/contracts/Create/create-author';
 import { CustomSpinnerService, SpinnerType } from 'src/app/services/common/custom-spinner.service';
 import { CustomToastrService, ToastrPosition, ToastrType } from 'src/app/services/common/custom-toastr.service';
+import { ListComponent } from './list/list.component';
 
 @Component({
   selector: 'app-authors',
@@ -16,6 +18,10 @@ export class AuthorsComponent implements AfterViewInit {
       position:ToastrPosition.TopRight,
       toastrType:ToastrType.Success
     })
+  }
+@ViewChild(ListComponent) listComponent:ListComponent
+  createdAuthors(author:CreateAuthor){
+ this.listComponent.getAuthors();
   }
 
 }

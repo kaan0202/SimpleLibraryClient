@@ -22,9 +22,38 @@ export class LanguageService {
 
 
 
-    create(language:CreateLanguage,successCallBack?:any){
-      this.httpClient.post({controller:"language"},language).subscribe(successCallBack);
-    }
+   create(language:CreateLanguage,successCallBack?:()=> void,errorCallBack?:(errorMessage:string)=>void ){
+    this.httpClient.post({controller:"language"},language).subscribe(result => {
+      successCallBack();
+    },(errorResponse:HttpErrorResponse) => {
+      const _error:Array<{key:string,value:Array<string>}> =errorResponse.error;
+      let message ="";
+      _error.forEach((v,index) =>{
+        v.value.forEach((_v,_index)=>{
+          message+=`${_v}<br>`
+        })
+      })
+      errorCallBack(message);
+    })
+
+  }
+
+  put(language:ListLanguage,successCallBack?:()=> void,errorCallBack?:(errorMessage:string)=>void){
+
+    this.httpClient.put({controller:"language"},language).subscribe(result => {
+      successCallBack();
+    },(errorResponse:HttpErrorResponse) => {
+      const _error:Array<{key:string,value:Array<string>}> =errorResponse.error;
+      let message ="";
+      _error.forEach((v,index) =>{
+        v.value.forEach((_v,_index)=>{
+          message+=`${_v}<br>`
+        })
+      })
+      errorCallBack(message);
+    })
+
+  }
    }
 
 

@@ -15,9 +15,10 @@ import {MatIconModule} from '@angular/material/icon';
 import { DeleteDirective } from '../../directives/delete.directive';
 import { DialogModule } from '../../dialogs/delete-dialog/dialog.module';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { UpdateLanguageDialogModule } from '../../dialogs/language/update-language-dialog/update-language-dialog.module';
-import { UpdateDirective } from '../../directives/update.directive';
 import {MatPaginatorModule} from '@angular/material/paginator';
+
+import { MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     LanguagesComponent,
@@ -25,9 +26,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     ListComponent,
     DeleteDirective,
 
+
+
   ],
   imports: [
-    CommonModule,RouterModule.forChild([{path:"",component:LanguagesComponent}]),MatButtonModule,MatTableModule,MatFormFieldModule,MatSidenavModule,MatInputModule,MatSelectModule,MatIconModule,MatMenuModule,DialogModule,MatPaginatorModule
+    CommonModule,RouterModule.forChild([{path:"",component:LanguagesComponent}]),MatButtonModule,MatTableModule,MatFormFieldModule,MatSidenavModule,MatInputModule,MatSelectModule,MatIconModule,MatMenuModule,DialogModule,MatPaginatorModule,FormsModule,MatInputModule,MatDialogModule
   ]
 })
 export class LanguagesModule { }
